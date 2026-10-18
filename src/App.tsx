@@ -2,14 +2,16 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { portfolio } from './data/portfolio'
 
 const navigation = [
+  { label: 'Projects', id: 'projects' },
   { label: 'About', id: 'about' },
   { label: 'Skills', id: 'skills' },
   { label: 'Experience', id: 'experience' },
+  { label: 'Education', id: 'education' },
   { label: 'Contact', id: 'contact' },
 ]
 
 function App() {
-  const [activeSection, setActiveSection] = useState('about')
+  const [activeSection, setActiveSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [formMessage, setFormMessage] = useState('')
 
@@ -40,10 +42,8 @@ function App() {
     event.preventDefault()
 
     setFormMessage(
-      'Your details are valid. This form is not connected to email yet, so your message has not been sent.',
+      'This form is not connected to email yet, so your message has not been sent. Please email Joseph directly.',
     )
-
-    event.currentTarget.reset()
   }
 
   return (
@@ -57,10 +57,11 @@ function App() {
 
       <main>
         <Hero />
+        <Projects />
         <About />
         <Skills />
         <Experience />
-        <Services />
+        <Education />
         <Contact
           onSubmit={handleSubmit}
           formMessage={formMessage}
@@ -207,19 +208,20 @@ function Hero() {
           <div className="hero-actions">
             <a
               className="button button-primary"
+              href="#projects"
+            >
+              View Featured Project
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              className="button button-secondary"
               href={portfolio.resumeUrl}
               target="_blank"
               rel="noreferrer"
             >
               View Resume
               <span aria-hidden="true">↗</span>
-            </a>
-
-            <a
-              className="button button-secondary"
-              href="#contact"
-            >
-              Contact Me
             </a>
           </div>
 
@@ -283,7 +285,7 @@ function Hero() {
         </div>
       </div>
 
-      <a className="scroll-cue" href="#about">
+      <a className="scroll-cue" href="#projects">
         <span className="scroll-line" />
         Scroll to explore
       </a>
@@ -312,6 +314,38 @@ function SectionHeading({
   )
 }
 
+function Projects() {
+  return (
+    <section className="content-section section-wrap observed-section projects-section" id="projects" aria-label="Featured project">
+      <SectionHeading index="01" title="Featured" muted="project." />
+
+      <article className="featured-project">
+        <div className="project-copy">
+          <p className="project-overline">TRACKFLOW / AUDIT TRAIL</p>
+          <h3>{portfolio.project.name}</h3>
+          <p>{portfolio.project.description}</p>
+          <ul className="project-features">
+            {portfolio.project.features.map((feature) => <li key={feature}>{feature}</li>)}
+          </ul>
+          <div className="project-technologies" aria-label="Technologies used">
+            {portfolio.project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+          </div>
+          <a className="button button-primary project-link" href={portfolio.project.repository} target="_blank" rel="noreferrer">
+            View Project on GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div className="project-workflow" role="group" aria-label="Shipment workflow summary">
+          <span className="project-overline">SHIPMENT WORKFLOW</span>
+          <div className="workflow-step"><span>01</span><div><strong>Created</strong><small>Shipment recorded</small></div></div>
+          <div className="workflow-step"><span>02</span><div><strong>In transit</strong><small>Events append to shipment history</small></div></div>
+          <div className="workflow-step"><span>03</span><div><strong>Delivered</strong><small>Inventory transfer commits transactionally</small></div></div>
+        </div>
+      </article>
+    </section>
+  )
+}
+
 function About() {
   return (
     <section
@@ -319,21 +353,20 @@ function About() {
       id="about"
     >
       <SectionHeading
-        index="01"
+        index="02"
         title="A little"
         muted="about me."
       />
 
       <div className="about-grid">
-        <p className="about-lead">
-          {portfolio.aboutSummary}
-        </p>
-
-        <div className="about-body">
-          <a className="text-link" href="#contact">
-            More about working together
-            <span aria-hidden="true">↗</span>
-          </a>
+        <div className="about-copy">
+          <p className="about-lead">{portfolio.aboutSummary}</p>
+          <div className="about-body">
+            <a className="text-link" href="#contact">
+              More about working together
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -347,7 +380,7 @@ function Skills() {
       id="skills"
     >
       <SectionHeading
-        index="02"
+        index="03"
         title="Tools for"
         muted="the work."
       />
@@ -385,7 +418,7 @@ function Experience() {
       id="experience"
     >
       <SectionHeading
-        index="03"
+        index="04"
         title="Experience"
       />
 
@@ -408,8 +441,8 @@ function Experience() {
               <span>
                 {[
                   entry.duration,
-                  entry.type,
-                  entry.stipend,
+                  'type' in entry ? entry.type : undefined,
+                  'stipend' in entry ? entry.stipend : undefined,
                 ]
                   .filter(Boolean)
                   .join(' · ')}
@@ -430,43 +463,35 @@ function Experience() {
   )
 }
 
-function Services() {
-  const services = [
-    'Web Application Development',
-    'Frontend Development',
-    'Backend / API Development',
-    'Full Stack Development',
-  ]
-
+function Education() {
   return (
     <section
-      className="services-band observed-section"
-      id="services"
+      className="content-section section-wrap observed-section"
+      id="education"
     >
-      <div className="section-wrap services-inner">
-        <div className="services-heading">
-          <span className="section-index">04</span>
+      <SectionHeading
+        index="05"
+        title="Education"
+        muted="& background."
+      />
 
-          <h2>
-            What I <span>can build.</span>
-          </h2>
+      <article className="education-entry">
+        <div>
+          <h3>{portfolio.education.degree}</h3>
+          <p>{portfolio.education.college}</p>
         </div>
 
-        <div className="service-list">
-          {services.map((service, index) => (
-            <div
-              className="service-row"
-              key={service}
-            >
-              <span>0{index + 1}</span>
-
-              <h3>{service}</h3>
-
-              <span aria-hidden="true">↗</span>
-            </div>
-          ))}
-        </div>
-      </div>
+        <dl className="education-facts">
+          <div>
+            <dt>Duration</dt>
+            <dd>{portfolio.education.duration}</dd>
+          </div>
+          <div>
+            <dt>Percentage</dt>
+            <dd>{portfolio.education.percentage}</dd>
+          </div>
+        </dl>
+      </article>
     </section>
   )
 }
@@ -486,7 +511,7 @@ function Contact({
       id="contact"
     >
       <SectionHeading
-        index="05"
+        index="06"
         title="Let's build"
         muted="something meaningful."
       />
@@ -582,7 +607,7 @@ function Contact({
             aria-live="polite"
           >
             {formMessage ||
-              'Frontend form only; messages are not sent yet.'}
+              'This form does not send messages yet. Please use the email link to contact me.'}
           </p>
         </form>
       </div>
@@ -614,7 +639,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            Resume ↗
+            Resume
           </a>
         </nav>
 

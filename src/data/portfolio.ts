@@ -4,10 +4,10 @@ export const portfolio = {
   professionalTitle: 'Full Stack Developer',
 
   heroSummary:
-    "I'm Joseph Clinton S, a Full Stack Developer focused on building modern, scalable and user-friendly web applications.",
+    'I build practical web applications across the frontend, backend, and data layers, with a focus on clear interfaces and reliable workflows.',
 
   aboutSummary:
-    "I'm Joseph Clinton S, a Full Stack Developer focused on building modern, scalable and user-friendly web applications. I enjoy turning ideas into reliable digital products using modern web technologies, with a strong focus on clean interfaces, robust backend systems and practical solutions.",
+    'I am a full stack developer interested in building reliable web applications and solving practical problems. I enjoy working across React interfaces, APIs, and data-backed workflows, and I am looking to grow through meaningful software development work.',
 
   primaryStack: 'MERN / Full Stack',
 
@@ -18,19 +18,46 @@ export const portfolio = {
 
   socialLinks: {
     github: 'https://github.com/josephclintonsahaya-byte',
-    linkedin: 'https://www.linkedin.com/in/joseph-clinton-35b50',
+    linkedin: 'https://www.linkedin.com/in/joseph-clinton-35b502260',
   },
 
   resumeUrl: '/resume.pdf',
 
+  project: {
+    name: 'Audit Trail Management System',
+    repository: 'https://github.com/josephclintonsahaya-byte/audit_trail',
+    description:
+      'TrackFlow manages warehouses, products, inventory, and shipments. Its shipment workflow records domain events in an append-only Event Store, then reconstructs shipment state for history and queries.',
+    features: [
+      'Role-protected shipment and inventory workflows',
+      'Shipment history with event replay and version-based reconstruction',
+      'CQRS command and query routes with optimistic concurrency checks',
+      'Transactional inventory transfer on shipment delivery',
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Express 5',
+      'MongoDB',
+      'Mongoose',
+      'JWT',
+      'Docker Compose',
+    ],
+  },
+
   skills: [
+    {
+      title: 'Programming Languages',
+      items: [
+        'JavaScript',
+        'TypeScript',
+      ],
+    },
     {
       title: 'Frontend',
       items: [
         'HTML5',
         'CSS3',
-        'JavaScript',
-        'TypeScript',
         'React',
         'Tailwind CSS',
       ],
@@ -60,6 +87,13 @@ export const portfolio = {
       ],
     },
   ],
+
+  education: {
+    degree: 'B.E. Computer Science & Engineering',
+    college: 'Kings College of Engineering, Pudukkottai',
+    duration: '2022–2026',
+    percentage: '75%',
+  },
 
   experience: [
     {
