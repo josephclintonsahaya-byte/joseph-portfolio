@@ -36,7 +36,6 @@ export const portfolio = {
     ],
     technologies: [
       'React',
-      'TypeScript',
       'Express 5',
       'MongoDB',
       'Mongoose',
@@ -50,7 +49,6 @@ export const portfolio = {
       title: 'Programming Languages',
       items: [
         'JavaScript',
-        'TypeScript',
       ],
     },
     {
@@ -74,7 +72,6 @@ export const portfolio = {
       title: 'Database',
       items: [
         'MongoDB',
-        'PostgreSQL',
       ],
     },
     {
