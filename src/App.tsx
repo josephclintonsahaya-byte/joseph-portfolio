@@ -634,13 +634,7 @@ function Footer() {
             </a>
           ))}
 
-          <a
-            href={portfolio.resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Resume
-          </a>
+         
         </nav>
 
         <div className="footer-socials">
